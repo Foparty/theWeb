@@ -1,0 +1,113 @@
+---
+type Props = {
+  margin?: string;
+  padding?: string;
+  width?: string;
+  height?: string;
+};
+
+const {
+  margin = 0,
+  padding = "0.6rem 1rem",
+  width = "max-content",
+  height = "max-content",
+} = Astro.props;
+---
+
+<div class="border">
+  <slot />
+</div>
+
+<style define:vars={{ margin, padding, width, height }}>
+  .border {
+    /* NOTE: do it pixel or else stange thing happen */
+    --bw: 15px;
+    --border-width: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+    position: relative;
+    width: max-content;
+    outline: var(--border-width) solid rgba(0, 0, 0, 0.1);
+    outline-offset: calc(var(--border-width) * -1);
+    padding: var(--padding);
+    margin: var(--margin);
+    width: var(--width);
+    height: var(--height);
+    background:
+    /* Top-left */
+      linear-gradient(
+          to right,
+          #000 var(--border-width),
+          transparent var(--border-width)
+        )
+        top left / var(--bw) var(--bw) no-repeat,
+      linear-gradient(
+          to bottom,
+          #000 var(--border-width),
+          transparent var(--border-width)
+        )
+        top left / var(--bw) var(--bw) no-repeat,
+      /* Top-right */
+        linear-gradient(
+          to left,
+          #000 var(--border-width),
+          transparent var(--border-width)
+        )
+        top right / var(--bw) var(--bw) no-repeat,
+      linear-gradient(
+          to bottom,
+          #000 var(--border-width),
+          transparent var(--border-width)
+        )
+        top right / var(--bw) var(--bw) no-repeat,
+      /* Bottom-left */
+        linear-gradient(
+          to right,
+          #000 var(--border-width),
+          transparent var(--border-width)
+        )
+        bottom left / var(--bw) var(--bw) no-repeat,
+      linear-gradient(
+          to top,
+          #000 var(--border-width),
+          transparent var(--border-width)
+        )
+        bottom left / var(--bw) var(--bw) no-repeat,
+      /* Bottom-right */
+        linear-gradient(
+          to left,
+          #000 var(--border-width),
+          transparent var(--border-width)
+        )
+        bottom right / var(--bw) var(--bw) no-repeat,
+      linear-gradient(
+          to top,
+          #000 var(--border-width),
+          transparent var(--border-width)
+        )
+        bottom right / var(--bw) var(--bw) no-repeat;
+    /* NOTE: this other way below was getting very good too. maybe save it for future use */
+    /* &::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 1rem;
+      height: 1rem;
+      border-top: 1px solid #000;
+      border-left: 1px solid #000;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      bottom: -1px;
+      left: -1px;
+      border-bottom: 1px solid #000;
+      border-left: 1px solid #000;
+    } */
+  }
+</style>

@@ -1,0 +1,173 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getEntry, type CollectionEntry } from "astro:content";
+const page: CollectionEntry<"pages"> = await getEntry("pages", "velno");
+---
+
+<Layout title={page.data.title} databar data={page.data} frame>
+  <div class="containe">
+    <section class="main">
+      <nav class="headernav">
+        <div>
+          <a href="#">project</a>
+          <a href="#">lab</a>
+          <a href="#">studio</a>
+        </div>
+        <h1>velno</h1>
+        <button>Reach Out</button>
+      </nav>
+      <h2 class="sentenceMob">Not everything needs to shout.</h2>
+      <h2 class="sentenceScreen">
+        <span>Not everything needs</span><span>to shout.</span>
+      </h2>
+      <blockquote>
+        Good design doesn't sout for attention. It builds quiet confidence --
+        through structure, clarity, and a message worth showing.
+      </blockquote>
+      <img class="img" src="/velno/velno.webp" alt="alt" />
+      <footer>
+        <small> &copy;2025 </small>
+        <nav>
+          <a href="#">email</a>
+          <a href="#">behance</a>
+          <a href="#">instagram</a>
+          <a href="https://www.agmg.dev" target="_blank"> &copy;AMG</a>
+        </nav>
+      </footer>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .containe {
+    width: 100%;
+    padding: 2rem 1rem;
+    background: linear-gradient(#cbcbcb 70%, #272727 70%);
+    height: 80vh;
+    @media (width > 956px) {
+      background: linear-gradient(90deg, #cbcbcb 70%, #272727 70%);
+      aspect-ratio: 16 / 10;
+      height: auto;
+    }
+  }
+  .main {
+    font-family: "MD Mono", monospace;
+    font-weight: 400;
+    position: relative;
+    height: 100%;
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .sentenceMob {
+      text-align: center;
+      font-size: clamp(2rem, 3vw + 1rem, 2.7rem);
+      padding-block: 4rem;
+      /* text-wrap: balance; */
+      font-weight: 500;
+      @media (width > 956px) {
+        display: none;
+      }
+    }
+    .sentenceScreen {
+      display: none;
+      font-size: clamp(2.6rem, 3vw + 1rem, 3.3rem);
+      /* text-wrap: balance; */
+      font-weight: 500;
+      @media (width > 956px) {
+        display: flex;
+        padding-block: 4rem;
+        gap: 1rem;
+        span:first-of-type {
+          color: #272727;
+          width: 70%;
+          text-align: right;
+        }
+        span:last-of-type {
+          padding-left: 1rem;
+          color: #cbcbcb;
+          width: 30%;
+        }
+      }
+    }
+    blockquote {
+      color: rgba(84, 84, 84, 0.8);
+      font-weight: 600;
+      font-size: 1.2rem;
+      line-height: 1.3;
+      @media (width > 956px) {
+        padding-inline: 1.3vw;
+        width: 70%;
+        font-size: 1.2rem;
+      }
+    }
+    .img {
+      position: absolute;
+      right: -7rem;
+      bottom: calc(30% - 0.8rem);
+      max-height: 60%;
+      @media (width > 956px) {
+        left: 20%;
+        bottom: -3rem;
+
+        max-height: 50%;
+      }
+    }
+  }
+  .headernav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    height: 3.5rem;
+    align-items: center;
+    button {
+      justify-self: end;
+      cursor: pointer;
+      width: max-content;
+      padding: 0.4rem 1.4rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      @media (width > 956px) {
+        color: #fafafa;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+    }
+    div {
+      display: flex;
+      gap: 1.5rem;
+      a {
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+    }
+  }
+  footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    color: #fafafa;
+    @media (width > 956px) {
+      color: #272727;
+    }
+    nav {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      text-transform: capitalize;
+      @media (width > 956px) {
+        color: #fafafa;
+      }
+      a:not(:last-of-type) {
+        font-size: 1.6rem;
+        font-weight: 100;
+      }
+      a:last-of-type {
+        margin-top: 1rem;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,136 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getEntry, type CollectionEntry } from "astro:content";
+const page: CollectionEntry<"pages"> = await getEntry("pages", "marinauiux");
+import BoxedContainer from "@components/marinauiux/BoxedContainer.astro";
+import Button from "@components/marinauiux/Button.astro";
+import Header from "@components/marinauiux/Header.astro";
+---
+
+<Layout title={page.data.title} databar data={page.data} frame>
+  <section class="contentcontainer">
+    <Header />
+    <section class="content">
+      <BoxedContainer>
+        <p>BLAZING SPEED: 297,450 TRANSACTIONS PER SECOND (TPS)</p>
+      </BoxedContainer>
+      <div>
+        <img src="/marinauiux/boxes.webp" alt="image of boxes" />
+        <div>
+          <span>+</span>
+          <span>+</span>
+          <span>+</span>
+          <span>+</span>
+          <span>+</span>
+          <span>+</span>
+        </div>
+      </div>
+    </section>
+    <BoxedContainer width="100%" padding="2rem 0" margin="2rem 0">
+      <h1>
+        <span>welcome</span>
+        <span>to</span>
+        <span>the next</span>
+        <span>level</span>
+        <span>of</span>
+        <span>web3 innovation</span>
+      </h1>
+    </BoxedContainer>
+    <BoxedContainer padding="1rem 2rem" margin="2rem 0" width="100%">
+      <p>
+        HIGH-SPEED, HIGH-TPS BLOCKCHAIN ECOSYSTEM WITH SEAMLESS CROSS-CHAIN
+        COMMUNICATION. UNITES ALL CHAINS. EMPOWERS DEVELOPERS.
+      </p>
+    </BoxedContainer>
+    <section class="foot">
+      <div>
+        <div class="left">
+          <span>+</span>
+          <span>+</span>
+          <span>+</span>
+          <span>+</span>
+          <span>+</span>
+          <span>+</span>
+        </div>
+      </div>
+      <div class="buttons">
+        <Button title="[get_started]" url="" bg />
+        <Button title="[how_it_works]" url="" bg={false} />
+      </div>
+    </section>
+  </section>
+</Layout>
+
+<style>
+  .contentcontainer {
+    padding: 2rem 1rem;
+  }
+  .content {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      line-height: 1;
+      @media (width > 400px) {
+        line-height: 2;
+      }
+    }
+    div {
+      display: flex;
+      align-items: center;
+      img {
+        width: 80px;
+      }
+      div {
+        margin-left: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 1;
+        width: 5ch;
+        justify-content: end;
+      }
+      div.left {
+        margin-left: 0;
+        justify-content: start;
+      }
+      span:nth-child(even) {
+        color: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+  h1 {
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.6;
+    text-align: center;
+    text-wrap: balance;
+    font-family: "Poppins";
+    span {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+  p {
+    text-wrap: pretty;
+  }
+  .foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div.left {
+      max-width: 6ch;
+    }
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 0.5rem;
+    @media (width > 400px) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+</style>

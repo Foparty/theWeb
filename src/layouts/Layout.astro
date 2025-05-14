@@ -1,22 +1,52 @@
+---
+type Props = {
+  title: string;
+  databar: boolean;
+  data?: {
+    title: string;
+    tweet: string;
+    design: string;
+  };
+  frame: boolean;
+};
+const { title, data, databar, frame } = Astro.props;
+import "@styles/globals.css";
+import PageLayout from "./PageLayout.astro";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    {databar && data && <PageLayout data={data} />}
+    {
+      frame ? (
+        <main>
+          <slot />
+        </main>
+      ) : (
+        <slot />
+      )
+    }
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  main {
+    background: #fafafa;
+    width: min(100% - 2rem, 75rem);
+    margin-inline: auto;
+    margin-block: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+    /* min-height: 50vh; */
+    overflow: hidden;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.15);
+  }
 </style>

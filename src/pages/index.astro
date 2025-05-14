@@ -1,11 +1,47 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+const pages: CollectionEntry<"pages">[] = await getCollection("pages");
+console.log(pages);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Alfonso Martin copying the web" databar={false} frame={false}>
+  <section class="content">
+    {
+      pages.map((page) => (
+        <article>
+          <a href={page.id}>
+            <img
+              src={page.data.cover}
+              alt={`image of ${page.data.design} design by Alfonso Martin at https://www.agmg.dev`}
+            />
+          </a>
+        </article>
+      ))
+    }
+  </section>
 </Layout>
+
+<style>
+  .content {
+    width: min(100% - 2rem, 65rem);
+    padding-block: 4rem;
+    margin-inline: auto;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(275px, 100%), 1fr));
+  }
+  article {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    /* max-width: 300px; */
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+</style>

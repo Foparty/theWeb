@@ -1,0 +1,54 @@
+---
+import Button from "@components/marinauiux/Button.astro";
+const links = [
+  { title: "home", url: "/" },
+  { title: "plafrorm", url: "/" },
+  { title: "developers", url: "/" },
+  { title: "community", url: "/" },
+  { title: "learn", url: "/" },
+  { title: "about", url: "/" },
+];
+---
+
+<nav class="nav">
+  <section class="logo">
+    <Button title={`/mango`} url="/" bg={false} noborder />
+  </section>
+  <section class="links">
+    {
+      links.map((item) => (
+        <Button bg={false} title={`/${item.title}`} url={item.url} noborder />
+      ))
+    }
+  </section>
+  <Button bg={true} title="[connect_wallet]" url="/" />
+</nav>
+
+<style>
+  .nav {
+    width: min(100% - 2rem, 65rem);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    align-items: center;
+    @media (width > 400px) {
+      height: 4rem;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+  }
+  .links {
+    max-width: min(100% - 2rem, 65rem);
+    display: flex;
+    gap: 0.7rem;
+    overflow-x: scroll;
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+  }
+  .links::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+  }
+</style>

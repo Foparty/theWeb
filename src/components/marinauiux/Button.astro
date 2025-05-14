@@ -1,0 +1,30 @@
+---
+type Props = {
+  title: string;
+  url: string;
+  bg: boolean;
+  noborder?: boolean;
+};
+
+const { title, url, bg, noborder } = Astro.props;
+const tcolor = bg ? "#ffffff" : "#000000";
+// const padd = bg ? "0.8rem 1.3rem" : "0";
+const padd = noborder ? "0" : "0.8rem 1.3rem";
+const border = noborder ? "none" : bg ? "none" : "1px solid #000000";
+---
+
+<a href={url}>{title}</a>
+
+<style define:vars={{ bg: bg ? "#000000" : "#ffffff", tcolor, padd, border }}>
+  a {
+    font-family: "Poppins", sans-serif;
+    padding: var(--padd);
+    text-decoration: none;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--tcolor);
+    background-color: var(--bg);
+    border: var(--border);
+  }
+</style>
