@@ -1,7 +1,10 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { getEntry, type CollectionEntry } from "astro:content";
-const page: CollectionEntry<"pages"> = await getEntry("pages", "marinauiux");
+const page = await getEntry("pages", "marinauiux");
+if (!page) {
+  throw new Error('Page entry "marinauiux" not found in "pages" collection.');
+}
 import BoxedContainer from "@components/marinauiux/BoxedContainer.astro";
 import Button from "@components/marinauiux/Button.astro";
 import Header from "@components/marinauiux/Header.astro";

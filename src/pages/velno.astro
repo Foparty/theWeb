@@ -1,7 +1,10 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { getEntry, type CollectionEntry } from "astro:content";
-const page: CollectionEntry<"pages"> = await getEntry("pages", "velno");
+const page = await getEntry("pages", "velno");
+if (!page) {
+  throw new Error('Page entry "velno" not found in "pages" collection.');
+}
 ---
 
 <Layout title={page.data.title} databar data={page.data} frame>

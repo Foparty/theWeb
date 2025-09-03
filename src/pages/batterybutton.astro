@@ -1,0 +1,48 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getEntry, type CollectionEntry } from "astro:content";
+import BatterySlider from "../components/BatterySlider";
+import "../styles/batterySlider.css";
+
+const page = await getEntry("pages", "batterybutton");
+if (!page) {
+  throw new Error(
+    'Page entry "batterybutton" not found in "pages" collection.',
+  );
+}
+---
+
+<Layout title={page.data.title} databar data={page.data} frame>
+  <div class="contentcontainer">
+    <article class="card">
+      <BatterySlider client:load initialCharge={72} />
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .contentcontainer {
+    padding: 2rem;
+    display: grid;
+    place-items: center;
+  }
+  .card {
+    background: rgb(18, 18, 18);
+    color: rgb(255, 255, 255);
+    padding: 1.3rem 1.3rem 1rem 1.3rem;
+    border-radius: 1.2rem;
+    min-width: 260px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    min-height: 180px;
+  }
+
+  /* All component-specific styles moved to batterySlider.css */
+  :global(.battery-container) {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+</style>

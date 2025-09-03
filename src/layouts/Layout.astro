@@ -9,6 +9,7 @@ type Props = {
   };
   frame: boolean;
 };
+import { ClientRouter } from "astro:transitions";
 const { title, data, databar, frame } = Astro.props;
 import "@styles/globals.css";
 import PageLayout from "./PageLayout.astro";
@@ -22,6 +23,7 @@ import PageLayout from "./PageLayout.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
     {databar && data && <PageLayout data={data} />}

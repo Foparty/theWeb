@@ -2,10 +2,13 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 const pages: CollectionEntry<"pages">[] = await getCollection("pages");
-console.log(pages);
 ---
 
 <Layout title="Alfonso Martin copying the web" databar={false} frame={false}>
+  <h1 class="title">
+    <a href="https://www.agmg.dev" target="_blank">Alfonso Martín</a> copying the
+    web!
+  </h1>
   <section class="content">
     {
       pages.map((page) => (
@@ -23,6 +26,14 @@ console.log(pages);
 </Layout>
 
 <style>
+  .title {
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    text-wrap: balance;
+  }
   .content {
     width: min(100% - 2rem, 65rem);
     padding-block: 4rem;
